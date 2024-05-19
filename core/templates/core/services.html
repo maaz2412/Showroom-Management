@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Add your Showroom</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Showroom Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label for="capacity">Capacity:</label>
+            <input type="number" class="form-control" id="capacity" name="capacity" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Showroom</button>
+    </form>
+</div>
+{% endblock %}

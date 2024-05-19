@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<table class="table table-striped">
+  <div style="text-align: center; margin-bottom: 50px;">
+<h1>Manage Inventory</h1>
+</div>
+    <thead>
+      <tr>
+        <th scope="col">Car</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Toyota Camry</td>
+        <td>Toyota</td>
+        <td>4.5</td>
+        <td>$25,000</td>
+        <td>In Stock</td>
+        <td>
+            <!-- Buttons for managing -->
+            <button class="btn btn-primary">Edit Information</button>
+            <button class="btn btn-secondary">View Car</button>
+            <button class="btn btn-success">Mark Sold</button>
+            <button class="btn btn-danger">Add new Car</button>
+        </td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+  {% endblock %}

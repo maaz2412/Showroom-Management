@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Register Your Showroom</h5>
+          <p class="card-text">Start by adding your showroom to our website and then flawlessly manage your business.</p>
+          <a href="{% url 'services' %}" class="btn btn-primary">Register</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Manage Inventory</h5>
+          <p class="card-text">If you have a registered showroom click below to manage it now.</p>
+          <a href="{% url 'manage' %}" class="btn btn-primary">Manage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

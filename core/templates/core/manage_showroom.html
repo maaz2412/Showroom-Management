@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Showroom Name</th>
+          <th>Actions</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for showroom in showrooms %}
+        <tr>
+          <td>{{ showroom.name }}</td>
+          <td>
+            <!-- Actions Buttons -->
+            <a href="{% url 'view_showroom' showroom.id %}" class="btn btn-primary">View</a>
+            <a href="{% url 'delete' showroom.id %}" class="btn btn-danger">Delete</a>
+          </td>
+          <td>{{ showroom.id }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %} 

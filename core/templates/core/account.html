@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register</h5>
+                    <p class="card-text text-center">Create a new account and add showroom</p>
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-block">Register</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Login</h5>
+                    <p class="card-text text-center">View and manage your showroom</p>
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-block">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Car Name</th>
+            <th>Car Price</th>
+            <th>Mark as Sold</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td>{{ item.car_name }}</td>
+            <td>{{ item.car_price }}</td>
+            <td><button class="btn btn-primary">Mark as Sold</button></td>
+          </tr>
+          {% endfor %}
+  </table>
+</div>
+{% endblock %}
