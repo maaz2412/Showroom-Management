@@ -16,7 +16,7 @@
           <td>
             <!-- Actions Buttons -->
             <a href="{% url 'view_showroom' showroom.id %}" class="btn btn-primary">View</a>
-            <a href="{% url 'delete' showroom.id %}" class="btn btn-danger">Delete</a>
+            <button class="btn btn-danger delete-btn" data-showroom-id="{{ showroom.id }}">Delete</button>
           </td>
           <td>{{ showroom.id }}</td>
         </tr>
@@ -24,4 +24,28 @@
       </tbody>
     </table>
   </div>
+  <script>
+    $(document).ready(function() {
+    $(".delete-btn").click(function() {
+        var showroomId = $(this).data('showroom-id');
+        
+        $.ajax({
+            url: "{% url 'delete' %}",
+            type: "POST",
+            data: {
+                'showroom_id': showroomId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                // Handle success response
+                console.log(data);
+            },
+            error: function(xhr, errmsg, err) {
+                // Handle error response
+                console.log(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    });
+});
+  </script>
 {% endblock %} 

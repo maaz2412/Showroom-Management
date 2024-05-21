@@ -9,11 +9,6 @@ from django.contrib import messages
 #Home page view
 def about(request):
     return render(request, 'core/about.html')
-def delete_showroom(request, showroom_id):
-    user = request.user
-    showrooms = Showroom.objects.filter(user=user, id=showroom_id)
-    showrooms.delete()
-    return redirect('manage')
 def manage_showroom(request):
     user = request.user
     showrooms = Showroom.objects.filter(user=user)
@@ -68,3 +63,9 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Your logged out, Login again to visit site')
     return redirect('login')
+def delete_showroom(request):
+    if request.method == 'POST':
+        showroom_id = request.POST.get('showroom_id')
+        showroom_to_delete = Showroom.objects.filter(pk=showroom_id)
+        showroom_to_delete.delete()
+        return redirect('manage')
