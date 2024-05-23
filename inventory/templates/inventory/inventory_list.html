@@ -6,6 +6,7 @@
           <tr>
             <th>Car Name</th>
             <th>Car Price</th>
+            <th>Showroom</th>
             <th>Mark as Sold</th>
           </tr>
         </thead>
@@ -14,6 +15,9 @@
           <tr>
             <td>{{ item.car_name }}</td>
             <td>{{ item.car_price }}</td>
+            <td>
+              {{ item.showroom }}
+            </td>
             <td><button class="btn btn-primary">Mark as Sold</button></td>
           </tr>
           {% endfor %}

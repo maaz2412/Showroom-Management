@@ -28,5 +28,5 @@ def add_to_inventory(request):
             brands = Car.Brands.choices
             return render(request, 'inventory/add_to_inventory.html', {'brands':brands , 'showrooms':showrooms})
 def display_inventory(request):
-       items = Car.objects.all()
+       items = Car.objects.select_related('showroom').all()
        return render(request, 'inventory/inventory_list.html', {'items': items})

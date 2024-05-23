@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 
 # Create your views here.
@@ -39,6 +39,7 @@ def register_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         new_user = User(username=username, email=email, password=password)
+        new_user.set_password(password)
         new_user.save()
         if new_user:
                 login(request, new_user)
@@ -50,13 +51,16 @@ def register_view(request):
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
+        print(username)
         password = request.POST.get('password')
+        print(password)
         valid_user = authenticate(request, username=username, password=password)
-        if valid_user is None:
-            return HttpResponse("Not valid user. ")
-        else:
+        print(valid_user)
+        if valid_user is not None:
             login(request, valid_user)
             return redirect('home')
+        else:
+            return HttpResponse("Invalid Credentials")
     else:
         return render(request, 'core/login.html')
 def logout_view(request):
@@ -68,4 +72,4 @@ def delete_showroom(request):
         showroom_id = request.POST.get('showroom_id')
         showroom_to_delete = Showroom.objects.filter(pk=showroom_id)
         showroom_to_delete.delete()
-        return redirect('manage')
+        return JsonResponse({'message': 'Showroom deleted successfully.'})
