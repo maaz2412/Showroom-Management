@@ -15,7 +15,7 @@
           <td>{{ showroom.name }}</td>
           <td>
             <!-- Actions Buttons -->
-            <a href="{% url 'view_showroom' showroom.id %}" class="btn btn-primary">View</a>
+            <a href="{% url 'view_showroom' showroom.id %}" class="btn btn-primary">Edit</a>
             <button class="btn btn-danger delete-btn" onclick="deleteShowroom('{{ showroom.id }}')" id="showroom_{{ showroom.id }}">Delete</button>
           </td>
           <td>{{ showroom.id }}</td>
@@ -44,6 +44,11 @@
                         // Request successful
                         var response = JSON.parse(xhr.responseText);
                         window.location.reload();
+                        var alertDiv = document.createElement('div');
+                        alertDiv.classList.add('alert', 'alert-primary');
+                        alertDiv.innerHTML = JSON.stringify(response);
+                        document.body.appendChild(alertDiv);
+
 
                     } else {
                         // Request failed

@@ -17,13 +17,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Services</a>
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'register' %}">Accounts</a>
@@ -43,16 +40,6 @@
 <br>
 <br>
 <br>
-<div style="text-align: center; margin-top: 20px; margin-bottom: 100px;">
-  <h1>Welcome to Our Showroom Management System</h1>
-<p>
-  Our showroom management system helps you efficiently manage your showroom operations, from inventory management to customer interactions.
-</p>
-<p>
-  With our system, you can easily keep track of your inventory, manage customer information, schedule appointments, and much more.
-</p>
-</div>
-
 {% block content %}
 {% endblock %}
 

@@ -11,7 +11,7 @@
 </div>
 {% endif %}
 <div class="container mt-4">
-    <h2>Start adding to your inventory</h2>
+    <h2>Start Cars/MotorBikes to your Showroom</h2>
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -41,7 +41,7 @@
             <label for="capacity">Car Price</label>
             <input type="number" class="form-control" id="capacity" name="price" required>
         </div>
-        <button type="submit" class="btn btn-primary">Add Car</button>
+        <button type="submit" class="btn btn-success">Add Car</button>
     </form>
 </div>
 {% endblock %}

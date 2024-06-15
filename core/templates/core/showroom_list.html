@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% if showrooms %}
+<div style="transform: translateX(40%);">
+  <h4>Filter By.</h4>
+  <form action="{% url 'search' %}" method="get" class="form-inline">
+    <div class="form-group mr-2">
+      <select class="form-control" id="searchType" name="search_item">
+        <option value="showrooms">Showrooms</option>
+        <option value="inventory">Inventory</option>
+        <option value="customers">Customers</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search Now</button>
+  </form>
+</div>
+<br>
+<div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+    <h3>Edit/Delete showrooms</h3>
+</div>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Showroom Name</th>
+        <th>Location</th>
+        <th>Capacity</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for showroom in showrooms %}
+      <tr>
+        <td>{{ showroom.name }}</td>
+        <td>{{ showroom.location }}</td>
+        <td>{{ showroom.capacity }}</td>
+        <td><button class="btn btn-danger delete-showroom" type="submit" value="{{ showroom.id }}">Delete</button></td>
+        <td><a href="{% url 'edit_showroom' showroom.id %}" class="btn btn-primary">Edit</a></td>
+  </div>
+  </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script>
+  $(document).ready(function() {
+      $(".delete-showroom").click(function() {
+          var showroomId = $(this).val(); // Get the value of the button (car ID)
+          var csrftoken = "{{ csrf_token }}"; // Get the CSRF token from the template
+
+          // Send AJAX request
+          $.ajax({
+              url: "{% url 'delete_showroom' %}", // URL to your delete car view
+              method: "POST",
+              data: {
+                  showroom_id: showroomId, // Send the car ID as data
+                  csrfmiddlewaretoken: csrftoken, // Send the CSRF token
+              },
+              headers: {"X-CSRFToken": csrftoken}, // Include CSRF token in headers
+              success: function(response) {
+                  // Reload the page after successful deletion
+                  location.reload();
+              },
+              error: function(xhr, errmsg, err) {
+                  // Handle error
+                  console.log(errmsg);
+              }
+          });
+      });
+  });
+</script>
+{% else %}
+<div class="alert alert-danger" role="alert">
+  Currently you have no showrooms
+</div>
+{% endif %}
+{% endblock %}

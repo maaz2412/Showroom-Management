@@ -1,7 +1,9 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<div class="container mt-4">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<div class="container mt-4" style="padding-top: 100px;">
     <h2>Add your Showroom</h2>
+    <h4>Start by adding your showroom details in our system.</h4>
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -16,7 +18,7 @@
             <label for="capacity">Capacity:</label>
             <input type="number" class="form-control" id="capacity" name="capacity" required>
         </div>
-        <button type="submit" class="btn btn-primary">Add Showroom</button>
+        <button type="submit" class="btn btn-success">Add Showroom</button>
     </form>
 </div>
 {% endblock %}

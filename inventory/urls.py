@@ -4,6 +4,7 @@ from inventory import views
  
 urlpatterns = [
     path('add_to_inventory/', views.add_to_inventory, name='inventory'),
-    path('inventory_list/', views.display_inventory, name='inventory-list'),
-    path('showroom/<int:showroom_id>/cars/', views.view_showroom, name='view_showroom'),
+    path('delete_car/',views.delete_car, name='delete_car'),
+    path('edit_car/<int:car_id>/', views.edit_car, name='edit_car'),
+    path('car_list', views.car_list,name='car_list')
 ]

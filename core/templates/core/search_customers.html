@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{% if customers %}
+<div style="transform: translateX(40%);">
+    <h4>Filter By.</h4>
+    <form action="{% url 'search' %}" method="get" class="form-inline">
+      <div class="form-group mr-2">
+        <select class="form-control" id="searchType" name="search_item">
+          <option value="showrooms">Showrooms</option>
+          <option value="inventory">Inventory</option>
+          <option value="customers">Customers</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Search Now</button>
+    </form>
+  </div>
+  <br>
+<table class="table table-bordered">
+    <h2 style="text-align: center;">Manage customer List</h2>
+    <h5 style="text-align: center;">Edit or Delete a record</h5>
+    <thead>
+        <th>
+            Customer Name
+        </th>
+        <th>
+            Cars Purchased
+        </th>
+        <th>
+            Date Purchased
+        </th>
+        <th>Delete</th>
+        <th>Edit Information</th>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.customer_name }}</td>
+            <td>
+                <ul>
+                    {% for car in customer.cars.all %}
+                        <li>{{ car.car_name }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{ customer.date_purchased }}</td>
+        <td><button value="{{ customer.id }}" class="btn btn-danger delete-customer" type="submit">Delete</button></td>
+        <td><a href="{% url 'edit_customer' customer.id %}" class="btn btn-primary">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-danger" role="alert">
+    You have no customers currently
+  </div>
+{% endif %}
+<script>
+    $(document).ready(function() {
+        $(".delete-customer").click(function() {
+            var customerId = $(this).val();
+            var csrftoken = "{{ csrf_token }}";
+            $.ajax({
+                url: "{% url 'delete_customer' %}",
+                method: "POST",
+                data: {customer_id: customerId,
+                    csrfmiddlewaretoken: csrftoken,
+                },
+                headers: {"X-CSRFToken": csrftoken},
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr, errmsg, err) {
+                    // Handle error
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
